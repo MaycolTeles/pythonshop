@@ -1,4 +1,4 @@
-# Design & Dragons
+# PYTHONSHOP
 A Python application for a Photoshop project using the Clean Architecture.
 
 
