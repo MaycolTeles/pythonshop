@@ -9,7 +9,7 @@ from PIL import ImageTk
 from tkinter import filedialog, Canvas
 
 from src.infrastructure.ui.interfaces import UIInterface
-from src.adapters.controllers.implementations import LoadImageController, RotateImageController
+from src.adapters.controllers.implementations import LoadImageController, RotateImageController, ResetImageController
 from src.adapters.presenters.implementations import ImagePresenter
 
 
@@ -66,9 +66,10 @@ class Tkinter(UIInterface, customtkinter.CTk):
         frm_options.grid_rowconfigure(1, minsize=20)  # empty row with minsize as spacing
         frm_options.grid_rowconfigure(2, minsize=20)  # empty row with minsize as spacing
         frm_options.grid_rowconfigure(3, minsize=20)  # empty row with minsize as spacing
-        frm_options.grid_rowconfigure(4, weight=1)    # empty row as spacing
-        frm_options.grid_rowconfigure(5, minsize=10)  # empty row with minsize as spacing
-        frm_options.grid_rowconfigure(6, minsize=20)  # empty row with minsize as spacing
+        frm_options.grid_rowconfigure(4, minsize=20)  # empty row with minsize as spacing
+        frm_options.grid_rowconfigure(5, weight=1)    # empty row as spacing
+        frm_options.grid_rowconfigure(6, minsize=10)  # empty row with minsize as spacing
+        frm_options.grid_rowconfigure(7, minsize=20)  # empty row with minsize as spacing
 
         lbl_options = customtkinter.CTkLabel(
             master=frm_options,
@@ -96,22 +97,29 @@ class Tkinter(UIInterface, customtkinter.CTk):
         btn_reset_image = customtkinter.CTkButton(
             master=frm_options,
             text="Reset Image",
-            command=self.btn_event
+            command=self.reset_image
         )
         btn_reset_image.grid(row=3, column=0, pady=10, padx=20)
 
+        btn_apply_changes = customtkinter.CTkButton(
+            master=frm_options,
+            text="Apply Changes",
+            command=self.apply_changes_to_image
+        )
+        btn_apply_changes.grid(row=4, column=0, pady=10, padx=20)
+
         lbl_space = customtkinter.CTkLabel(master=frm_options, text="")
-        lbl_space.grid(row=4, column=0)
+        lbl_space.grid(row=5, column=0)
 
         lbl_mode = customtkinter.CTkLabel(master=frm_options, text="Appearance Mode:")
-        lbl_mode.grid(row=5, column=0, pady=0, padx=20)
+        lbl_mode.grid(row=6, column=0, pady=0, padx=20)
 
         mnu_appearance = customtkinter.CTkOptionMenu(
             master=frm_options,
             values=["Dark", "Light", "System"],
             command=self.change_appearance_mode
         )
-        mnu_appearance.grid(row=6, column=0, pady=(0,20), padx=20)
+        mnu_appearance.grid(row=7, column=0, pady=(0,20), padx=20)
         mnu_appearance.set("Dark")
 
     def _create_image_frame(self) -> None:
@@ -227,6 +235,14 @@ class Tkinter(UIInterface, customtkinter.CTk):
 
         controller = LoadImageController()
         controller.execute(image_data)
+
+    def reset_image(self) -> None:
+        """"""
+        controller = ResetImageController()
+        controller.execute()
+
+    def apply_changes_to_image(self) -> None:
+        """"""
 
     def show_image(self, image_data: ImagePresenter) -> None:
         """
