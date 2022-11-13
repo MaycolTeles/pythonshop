@@ -9,13 +9,19 @@ from src.infrastructure.libraries.images.interfaces import ImageLibraryInterface
 
 class PILImageLibrary(ImageLibraryInterface):
     """"""
+    _original_image: Image.Image
     _image: Image.Image
+
+    def get_original_image(self) -> Image.Image:
+        """"""
+        return self._original_image
 
     def load(self, image_path: Path) -> Image.Image:
         """
         Method to load an image.
         """
         self._image = Image.open(image_path)
+        self._original_image = self._image
         return self._image
 
     def save(self, image_path: Path):
@@ -28,8 +34,8 @@ class PILImageLibrary(ImageLibraryInterface):
         """
         Method to rotate an image based on the angle received as argument.
         """
-        self._image = self._image.rotate(angle, Image.NEAREST, expand=True)
-        return self._image
+        _image = self._image.rotate(angle)
+        return _image
 
     def crop(self) -> Image.Image:
         """

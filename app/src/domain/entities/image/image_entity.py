@@ -29,6 +29,11 @@ class ImageEntity():
 
         self._image_lib = IMAGE_LIBRARY_INJECTION
 
+    def get_original_image(self) -> Any:
+        """"""
+        image = self._image_lib.get_original_image()
+        return image
+
     def load(self, image_path: Path) -> Any:
         """
         Method to load the image based on its path received as argument.

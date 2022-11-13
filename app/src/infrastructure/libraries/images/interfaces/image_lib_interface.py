@@ -13,6 +13,10 @@ class ImageLibraryInterface(ABC):
     """
 
     @abstractmethod
+    def get_original_image(self) -> Any:
+        """"""
+
+    @abstractmethod
     def load(self, image_path: Path) -> Any:
         """
         Abstract Method to load an image.
