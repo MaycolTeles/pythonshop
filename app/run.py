@@ -13,6 +13,5 @@ def run() -> None:
     user_interface.execute()
 
 
-
 if __name__ == "__main__":
     run()
