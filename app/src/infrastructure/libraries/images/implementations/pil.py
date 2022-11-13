@@ -28,7 +28,6 @@ class PILImageLibrary(ImageLibraryInterface):
         """
         Method to rotate an image based on the angle received as argument.
         """
-        print(f"ANGLE: {angle} - TYPE {type(angle)}")
         self._image = self._image.rotate(angle, Image.NEAREST, expand=True)
         return self._image
 
