@@ -13,7 +13,7 @@ if TYPE_CHECKING:
 import sys
 
 from src.infrastructure.ui.interfaces.ui_interface import UIInterface
-from src.adapters.controllers.implementations import LoadImageController, RotateImageController
+from src.adapters.controllers import ImageController
 
 
 class CLI(UIInterface):
@@ -91,8 +91,8 @@ class CLI(UIInterface):
             "image_path": image_path
         }
 
-        controller = LoadImageController()
-        controller.execute(image_data)
+        controller = ImageController()
+        controller.load_image(image_data)
 
         return self._show_menu()
 
@@ -118,8 +118,8 @@ class CLI(UIInterface):
             "rotation_angle": rotation_angle
         }
 
-        controller = RotateImageController()
-        controller.execute(angle_data)
+        controller = ImageController()
+        controller.rotate_image(angle_data)
 
         return self._show_menu()
 
