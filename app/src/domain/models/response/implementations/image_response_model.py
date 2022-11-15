@@ -22,4 +22,4 @@ class ImageResponseModel(ResponseModelInterface):
         response_data : dict[str, Any]
             The raw data to create the response model.
         """
-        self.image = response_data.get("image", None)
+        self.image = response_data.get("image")

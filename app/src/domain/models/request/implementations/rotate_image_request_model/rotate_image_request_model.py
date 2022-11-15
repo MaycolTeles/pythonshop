@@ -20,5 +20,5 @@ class RotateImageRequestModel(RequestModelInterface):
         request_data : dict[str, str]
             The raw data to create the request model.
         """
-        rotate_angle_str = request_data.get("rotation_angle", 0.0)
+        rotate_angle_str = request_data.get("rotation_angle")
         self.rotating_angle = float(rotate_angle_str)
