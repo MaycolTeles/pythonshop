@@ -4,7 +4,7 @@ Module containing the 'RotateImageUseCase' Class.
 
 from typing import Any
 
-from src.adapters.presenters.interfaces.presenter_interface import PresenterInterface
+from src.adapters.presenters.interfaces import PresenterInterface
 from src.domain.entities import ImageEntity
 from src.domain.use_cases import UseCaseInterface
 from src.domain.models.request.implementations import RotateImageRequestModel

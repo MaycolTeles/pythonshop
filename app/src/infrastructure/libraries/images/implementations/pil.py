@@ -28,7 +28,9 @@ class PILImageLibrary(ImageLibraryInterface):
         """
         Method to save an image.
         """
-        self._image.save(image_path)
+        DEFAULT_IMAGE_EXTENSION = "PNG"
+        image_path_plus_extension = image_path.with_suffix(".png")
+        self._image.save(image_path_plus_extension, DEFAULT_IMAGE_EXTENSION)
 
     def rotate(self, angle: float) -> Image.Image:
         """

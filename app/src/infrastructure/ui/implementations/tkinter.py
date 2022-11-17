@@ -9,7 +9,7 @@ from PIL import ImageTk
 from tkinter import filedialog, Canvas
 
 from src.infrastructure.ui.interfaces import UIInterface
-from src.adapters.controllers.implementations import LoadImageController, RotateImageController, ResetImageController
+from src.adapters.controllers import ImageController
 from src.adapters.presenters.implementations import ImagePresenter
 
 
@@ -233,13 +233,13 @@ class Tkinter(UIInterface, customtkinter.CTk):
             "image_path": image_name
         }
 
-        controller = LoadImageController()
-        controller.execute(image_data)
+        controller = ImageController()
+        controller.load_image(image_data)
 
     def reset_image(self) -> None:
         """"""
-        controller = ResetImageController()
-        controller.execute()
+        controller = ImageController()
+        controller.reset_image()
 
     def apply_changes_to_image(self) -> None:
         """"""
@@ -272,11 +272,11 @@ class Tkinter(UIInterface, customtkinter.CTk):
         )
 
         image_data = {
-            "image_name": image_name
+            "image_path": image_name
         }
 
-        controller = SaveImageController()
-        controller.execute(image_data)
+        controller = ImageController()
+        controller.save_image(image_data)
 
     def crop_image(self) -> None:
         """
@@ -295,8 +295,8 @@ class Tkinter(UIInterface, customtkinter.CTk):
             "rotation_angle": rotation_angle
         }
 
-        controller = RotateImageController()
-        controller.execute(image_data)
+        controller = ImageController()
+        controller.rotate_image(image_data)
 
     def change_appearance_mode(self, new_appearance_mode: str):
         customtkinter.set_appearance_mode(new_appearance_mode)

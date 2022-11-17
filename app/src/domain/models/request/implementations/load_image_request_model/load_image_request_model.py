@@ -22,5 +22,5 @@ class LoadImageRequestModel(RequestModelInterface):
         request_data : dict[str, str]
             The raw data to create the request model.
         """
-        image_path_str = request_data.get("image_path", "")
+        image_path_str = request_data.get("image_path")
         self.image_path = Path(image_path_str)
